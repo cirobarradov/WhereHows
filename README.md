@@ -41,15 +41,23 @@ New to Wherehows? Check out the [Getting Started Guide][GS]
 
 
 ### Preparation
+Install mysql database
+```
+docker run --name datalab-mariadb --net=host -e MYSQL_ROOT_PASSWORD=root -d mariadb
+docker exec -it datalab-mariadb bash
+```
+
 First, please [setup the metadata repository][DB] in MySQL.
 ```
-CREATE DATABASE wherehows
-  DEFAULT CHARACTER SET utf8
-  DEFAULT COLLATE utf8_general_ci;
+docker exec -it datalab-mariadb bash
+root@vm-kafka:/# mysql -u root -proot
+      CREATE DATABASE wherehows
+        DEFAULT CHARACTER SET utf8
+        DEFAULT COLLATE utf8_general_ci;
 
-CREATE USER 'wherehows';
-SET PASSWORD FOR 'wherehows' = PASSWORD('wherehows');
-GRANT ALL ON wherehows.* TO 'wherehows'
+      CREATE USER 'wherehows';
+      SET PASSWORD FOR 'wherehows' = PASSWORD('wherehows');
+      GRANT ALL ON wherehows.* TO 'wherehows';
 ```
 
 Execute the [DDL files][DDL] to create the required repository tables in **wherehows** database.
