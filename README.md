@@ -43,7 +43,7 @@ New to Wherehows? Check out the [Getting Started Guide][GS]
 ### Preparation
 Install mysql database
 ```
-docker run --name datalab-mariadb --net=host -e MYSQL_ROOT_PASSWORD=root -d mariadb
+docker run --name datalab-mariadb -v $path_to_wherehows/WhereHows/wherehows-data-model/DDL:/var/lib/mysql --net=host -e MYSQL_ROOT_PASSWORD=root -d mariadb
 docker exec -it datalab-mariadb bash
 ```
 
